@@ -24,6 +24,7 @@ RUN npm install -g node-gyp && \
 
 #加快安装速度
 USER jenkins
-RUN npm cache add ccap pm2
+RUN npm cache add ccap && \
+    npm cache add pm2
 
 USER root
