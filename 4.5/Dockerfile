@@ -21,3 +21,9 @@ RUN npm install -g node-gyp && \
     npm install -g cnpm && \
     npm cache clean && \
     rm -rf /tmp/* /var/tmp/*
+
+#加快安装速度
+USER jenkins
+RUN npm cache add ccap pm2
+
+USER root
