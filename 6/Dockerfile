@@ -2,11 +2,11 @@ FROM evarga/jenkins-slave
 MAINTAINER Jack Hu <hello@jackhu.top>
 
 RUN apt-get -q update && \
-    apt-get install -qy build-essential python python-pip git openssh-server sudo curl && \ 
+    apt-get install -qy build-essential python python-pip git openssh-server sudo curl && \
     apt-get -q clean -y && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/*.bin
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 4
+ENV NODE_VERSION 6
 
 RUN echo "jenkins ALL = NOPASSWD: ALL" >> /etc/sudoers
 
@@ -27,4 +27,8 @@ USER jenkins
 RUN npm cache add ccap && \
     npm cache add pm2
 
+ENV MONGO_HOST mongotest
+ENV REDIS_HOST redistest
+
 USER root
+

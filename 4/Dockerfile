@@ -6,7 +6,7 @@ RUN apt-get -q update && \
     apt-get -q clean -y && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/*.bin
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 6
+ENV NODE_VERSION 4
 
 RUN echo "jenkins ALL = NOPASSWD: ALL" >> /etc/sudoers
 
@@ -21,3 +21,13 @@ RUN npm install -g node-gyp && \
     npm install -g cnpm && \
     npm cache clean && \
     rm -rf /tmp/* /var/tmp/*
+
+#加快安装速度
+USER jenkins
+RUN npm cache add ccap && \
+    npm cache add pm2
+
+ENV MONGO_HOST mongotest
+ENV REDIS_HOST redistest
+
+USER root
