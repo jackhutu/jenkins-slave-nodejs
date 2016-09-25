@@ -27,7 +27,4 @@ USER jenkins
 RUN npm cache add ccap && \
     npm cache add pm2
 
-ENV MONGO_HOST mongotest
-ENV REDIS_HOST redistest
-
 USER root
